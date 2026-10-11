@@ -1,0 +1,85 @@
+research_task:
+  description: >
+    Delegate to the Destination Research Specialist.
+    Research {destination} for a trip from {start_date} to {end_date} by
+    traveller(s) from {origin}. Cover: a short summary, best time to visit,
+    visa requirements for travellers from {origin}, expected weather for those
+    dates, local events during the trip, 3-5 good neighbourhoods to stay in, and
+    practical tips. Traveller preferences: {preferences}.
+  expected_output: >
+    A DestinationInfo object: summary, best_time_to_visit, visa_requirements,
+    weather_summary, local_events (list), neighborhoods (list), tips (list).
+  agent: destination_researcher
+
+flight_task:
+  description: >
+    Delegate to the Flight & Transport Specialist.
+    Find 3-5 round-trip flight options from {origin} to {destination},
+    departing {start_date} and returning {end_date}, for {travelers} adult(s).
+    Resolve IATA codes first, then call the search_flights tool once (with
+    max_price_per_person 0). When only estimates are available, use typical
+    fares from the results, not "from $X" teaser minimums. Convert all
+    prices to {currency}. The total trip budget is {budget} {currency}, so
+    flights should not take more than about 45% of it.
+  expected_output: >
+    A FlightOptions object whose options are sorted cheapest first, each with
+    airline, route, outbound, inbound, stops, price_per_person, currency and
+    source ('amadeus' or 'estimate: <url>').
+  agent: flight_agent
+
+stay_task:
+  description: >
+    Delegate to the Accommodation Specialist.
+    Find 3-5 places to stay in {destination} for {nights} night(s) from
+    {start_date}, for {travelers} traveller(s), in the neighbourhoods
+    recommended by the research. Preferences: {preferences}. Accommodation
+    should take no more than about 35% of the {budget} {currency} budget.
+    Only private rooms, guesthouses or whole apartments: no dorm beds.
+    Quote price_per_night for the whole group in {currency}.
+  expected_output: >
+    A StayOptions object whose options are sorted best value first, each with
+    name, neighborhood, price_per_night, rating, url and notes.
+  agent: accommodation_agent
+  context:
+    - research_task
+
+itinerary_task:
+  description: >
+    Delegate to the Itinerary Planner.
+    Create an itinerary for exactly {days} days (day 1 to day {days}) in
+    {destination} starting {start_date}, based in the neighbourhood of the
+    top-ranked stay. Use the travel_times tool to group nearby sights and keep
+    transfers short. Match preferences: {preferences}. Keep it compact: 3-4
+    activities per day, notes of one short sentence or empty. Do not list
+    meals or the hotel as activities; food is covered by
+    food_per_person_per_day. Give each activity an estimated cost_per_person
+    in {currency} (0 if free). Also estimate food_per_person_per_day and
+    local_transport_per_day (whole group).
+  expected_output: >
+    An Itinerary object with exactly {days} days (each with day, date, theme and activities with
+    time, name, location, cost_per_person, travel_minutes_from_previous,
+    notes), food_per_person_per_day and local_transport_per_day.
+  agent: itinerary_planner
+  context:
+    - research_task
+    - stay_task
+
+budget_task:
+  description: >
+    Delegate to the Budget Aggregator.
+    Total the trip for {travelers} traveller(s) over {nights} night(s) using
+    the cheapest flight and the top-ranked stay: flights (price_per_person x
+    travelers), accommodation (price_per_night x nights), activities, food and
+    local transport. Compare with the budget of {budget} {currency}. If over
+    budget, set over_budget true, give the overage and list 3-5 concrete
+    suggested_trims (which flight or stay to swap, which paid activities to
+    drop).
+  expected_output: >
+    A BudgetReport object with currency, budget, flights, accommodation,
+    activities, food, local_transport, total, over_budget, overage and
+    suggested_trims.
+  agent: budget_aggregator
+  context:
+    - flight_task
+    - stay_task
+    - itinerary_task

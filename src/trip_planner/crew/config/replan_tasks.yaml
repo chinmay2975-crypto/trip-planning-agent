@@ -1,0 +1,27 @@
+cheaper_flight_task:
+  description: >
+    The trip is {overage} {currency} over its {budget} {currency} budget.
+    The current flight costs {current_flight_price} {currency} per person.
+    Find 3-5 cheaper round-trip flights from {origin} to {destination}
+    ({start_date} to {end_date}, {travelers} adult(s)) at or below
+    {max_flight_price} {currency} per person. Call search_flights with
+    max_price_per_person set. Consider extra stops, nearby airports or budget
+    carriers. Budget advice so far: {trims}
+  expected_output: >
+    A FlightOptions object, cheapest first, with prices per person in
+    {currency}. If nothing meets the cap, include the cheapest options found.
+  agent: flight_agent
+
+cheaper_stay_task:
+  description: >
+    The trip is {overage} {currency} over its {budget} {currency} budget.
+    The current stay costs {current_stay_price} {currency} per night.
+    Find 3-5 stays in {destination} for {nights} night(s) from {start_date}
+    for {travelers} traveller(s) at or below {max_stay_price} {currency} per
+    night for the whole group: guesthouses, hostels with private rooms,
+    apartments, or cheaper but well-connected neighbourhoods. No dorm beds. Preferences:
+    {preferences}. Budget advice so far: {trims}
+  expected_output: >
+    A StayOptions object, cheapest first, with price_per_night in {currency}.
+    If nothing meets the cap, include the cheapest options found.
+  agent: accommodation_agent
