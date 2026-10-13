@@ -165,7 +165,7 @@ class TripPlanningFlow(Flow[TripState]):
             ("itinerary", self.state.itinerary),
         ]:
             if not value:
-                self.state.warnings.append(f"No usable {name} output from the crew")
+                self.state.warnings.append(f"No usable {name} output from the first planning round")
         self.state.warnings += itinerary_warnings(self.state.itinerary, req)
 
         # Same selection rule the Budget Aggregator was told to use.
@@ -180,16 +180,22 @@ class TripPlanningFlow(Flow[TripState]):
 
     @router(or_(plan, "replan_cheaper"))
     def budget_check(self) -> str:
-        b = self.state.budget
-        if not b.over_budget:
+        st, b = self.state, self.state.budget
+        # A plan without flights or a stay only *looks* cheap: re-search to fill it.
+        missing = [name for name, chosen in (("flights", st.chosen_flight), ("stay", st.chosen_stay))
+                   if chosen is None]
+        if st.replan_failed or (not b.over_budget and not missing):
             return "finalize"
-        if self.state.replan_failed:
-            return "finalize"
-        if self.state.iterations >= get_settings().max_budget_iterations:
-            self.state.warnings.append(
-                f"Still {b.overage} {b.currency} over budget after "
-                f"{self.state.iterations} planning rounds"
-            )
+        if st.iterations >= get_settings().max_budget_iterations:
+            if b.over_budget:
+                st.warnings.append(
+                    f"Still {b.overage} {b.currency} over budget after {st.iterations} planning rounds"
+                )
+            if missing:
+                st.warnings.append(
+                    f"No {' or '.join(missing)} found after {st.iterations} planning rounds; "
+                    "the total excludes them"
+                )
             return "finalize"
         return "replan"
 

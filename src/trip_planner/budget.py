@@ -57,18 +57,27 @@ def compute_budget(
     )
 
 
+# Budget shares the crew's tasks aim for; used as the cap for a category that
+# is missing (no usable options yet) instead of a meaningless cap of 0.
+FLIGHT_SHARE = 0.45
+STAY_SHARE = 0.35
+
+
 def replan_caps(request: TripRequest, report: BudgetReport) -> tuple[float, float]:
     """Split the overage across flights and accommodation by their share.
 
     Returns (max flight price per person, max stay price per night). A 5%
-    margin is added so the next iteration aims comfortably under budget.
+    margin is added so the next iteration aims comfortably under budget. A
+    category with no cost yet (nothing found) gets its target budget share.
     """
-    flexible = report.flights + report.accommodation
-    if flexible <= 0:
-        return 0.0, 0.0
+    present = report.flights + report.accommodation
     cut = report.overage * 1.05
-    flight_total = max(0.0, report.flights - cut * report.flights / flexible)
-    stay_total = max(0.0, report.accommodation - cut * report.accommodation / flexible)
+
+    def reduce(total: float) -> float:
+        return max(0.0, total - cut * total / present)
+
+    flight_total = reduce(report.flights) if report.flights > 0 else FLIGHT_SHARE * request.budget
+    stay_total = reduce(report.accommodation) if report.accommodation > 0 else STAY_SHARE * request.budget
     per_person = flight_total / request.travelers
     per_night = stay_total / max(1, request.nights)
     return round(per_person, 2), round(per_night, 2)

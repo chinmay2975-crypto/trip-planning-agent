@@ -54,7 +54,8 @@ itinerary_task:
     meals or the hotel as activities; food is covered by
     food_per_person_per_day. Give each activity an estimated cost_per_person
     in {currency} (0 if free). Also estimate food_per_person_per_day and
-    local_transport_per_day (whole group).
+    local_transport_per_day for the whole group, based on local public
+    transport day-pass prices.
   expected_output: >
     An Itinerary object with exactly {days} days (each with day, date, theme and activities with
     time, name, location, cost_per_person, travel_minutes_from_previous,

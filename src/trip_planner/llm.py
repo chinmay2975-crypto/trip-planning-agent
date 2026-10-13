@@ -42,6 +42,10 @@ ANSWER_PSEUDO_TOOLS = {"json", "final_answer", "answer", "response", "output", "
 
 
 DEFAULT_COOLDOWN_SECONDS = 3600.0
+# Groq's daily window is rolling: "try again in 4m" only means room for that one
+# request, and a nearly full quota is hit again right away. Bench the model for
+# at least this long to avoid flip-flopping back to it.
+MIN_COOLDOWN_SECONDS = 900.0
 
 # model -> unix time its daily quota is expected to be usable again
 _exhausted: dict[str, float] = {}
@@ -167,7 +171,7 @@ class GroqCompletion(OpenAICompletion):
     def _on_rate_limit(self, e: openai.RateLimitError) -> None:
         if not is_daily_limit(e) or len(self._chain()) == 1:
             raise e
-        mark_exhausted(self.model, parse_retry_seconds(str(e)))
+        mark_exhausted(self.model, max(parse_retry_seconds(str(e)), MIN_COOLDOWN_SECONDS))
 
     def _handle(self, e: openai.BadRequestError, tools: list | None, attempt: int) -> str | None:
         """Recovered answer, None to retry, or re-raise when out of options."""

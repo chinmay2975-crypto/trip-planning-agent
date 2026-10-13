@@ -55,3 +55,13 @@ def test_flight_option_coerces_structured_times():
     f = FlightOption(airline="SK", route="BOM-LIS-BOM", price_per_person=287,
                      outbound={"date": "2026-11-15", "time": "02:30"}, inbound=None)
     assert (f.outbound, f.inbound) == ("2026-11-15 02:30", "")
+
+
+def test_replan_caps_give_missing_category_its_budget_share(request_1000):
+    # Live-run regression: no flights in round 1 used to produce a flight cap of 0.
+    r = compute_budget(request_1000, None, StayOption(name="H", price_per_night=50), None)
+    max_flight, max_stay = replan_caps(request_1000, r)
+    assert max_flight == pytest.approx(450.0)  # 45% of 1000, 1 traveller
+    assert max_stay == pytest.approx(50.0)     # not over budget: stay keeps its price
+    both_missing = replan_caps(request_1000, compute_budget(request_1000, None, None, None))
+    assert both_missing == (pytest.approx(450.0), pytest.approx(87.5))  # 35% / 4 nights

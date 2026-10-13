@@ -145,3 +145,31 @@ def test_failed_replan_returns_best_plan_so_far(request_1000):
     assert plan is not None and plan.iterations == 1
     assert plan.budget.over_budget and plan.chosen_flight.airline == "A"
     assert any("Re-search for cheaper options failed" in w for w in plan.warnings)
+
+
+def test_missing_flights_trigger_replan_even_when_under_budget(request_1000):
+    # Live-run regression: round 1 lost its flights, so its total looked cheap.
+    def no_flights(inputs):
+        out = trip_runner(0, 100)(inputs)
+        out[1] = NS(pydantic=FlightOptions(options=[]))
+        return out
+
+    calls = []
+    plan = run_flow(request_1000, no_flights, replan_runner(calls))
+    assert len(calls) == 1 and calls[0]["max_flight_price"] == 450.0
+    assert plan.chosen_flight is not None and plan.budget.flights == 450.0
+    assert plan.budget_history[0].flights == 0
+
+
+def test_flights_never_found_is_warned(request_1000):
+    def no_flights(inputs):
+        out = trip_runner(0, 100)(inputs)
+        out[1] = NS(pydantic=FlightOptions(options=[]))
+        return out
+
+    def stays_only(inputs):
+        return [None, NS(pydantic=StayOptions(options=[StayOption(name="H2", price_per_night=90)]))]
+
+    plan = run_flow(request_1000, no_flights, stays_only)
+    assert plan.iterations == 3 and plan.chosen_flight is None
+    assert any("No flights found after 3 planning rounds" in w for w in plan.warnings)

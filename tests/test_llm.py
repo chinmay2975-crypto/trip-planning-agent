@@ -159,3 +159,13 @@ def test_per_minute_limit_is_left_to_crewai_retry(chained):
         llm.call("hi")
     assert called == ["openai/gpt-oss-20b"] * len(called)
     assert not groq_llm.is_exhausted("openai/gpt-oss-20b")
+
+
+def test_short_retry_hint_still_benches_model_for_minimum_cooldown(chained):
+    import time
+    llm, install = chained
+    install({"openai/gpt-oss-20b": rate_limited(TPD.replace("12m10.08s", "4m55.92s")),
+             "openai/gpt-oss-120b": "ok"})
+    llm.call("hi")
+    remaining = groq_llm._exhausted["openai/gpt-oss-20b"] - time.time()
+    assert remaining == pytest.approx(groq_llm.MIN_COOLDOWN_SECONDS, abs=5)

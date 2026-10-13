@@ -107,7 +107,7 @@ with flights:
         f = plan["chosen_flight"]
         st.success(f"Selected: {f['airline']} {f['route']} — {f['price_per_person']:,.0f} {f['currency']}/person ({f['source']})")
     if plan["flights"]:
-        st.dataframe(pd.DataFrame(plan["flights"]), use_container_width=True, hide_index=True)
+        st.dataframe(pd.DataFrame(plan["flights"]), width="stretch", hide_index=True)
     else:
         st.write("No flight options found.")
 
@@ -116,7 +116,7 @@ with stay:
         s = plan["chosen_stay"]
         st.success(f"Selected: {s['name']} ({s['neighborhood']}) — {s['price_per_night']:,.0f} {cur}/night")
     if plan["stays"]:
-        st.dataframe(pd.DataFrame(plan["stays"]), use_container_width=True, hide_index=True)
+        st.dataframe(pd.DataFrame(plan["stays"]), width="stretch", hide_index=True)
     else:
         st.write("No stay options found.")
 

@@ -81,13 +81,29 @@ streamlit run app/streamlit_app.py
 - `POST /plan/async` then `GET /plan/{job_id}`: an async job that the UI polls. Jobs are held in memory.
 - `GET /health`
 
+## Sample run
+
+A live run through the API (Mumbai → Lisbon, 15–19 Nov 2026, 1 traveller, $800 budget, food + history), on the free Groq tier:
+
+| Round | Flights | Stay (4 nights) | Total |
+|---|---|---|---|
+| 1 | — (manager returned no flights) | $200 | $814 |
+| 2 | $529 | $55 | $1,198 |
+| 3 | $287 | $55 | $956 |
+
+- It used **212k LLM tokens** over 3 rounds. The Groq wrapper recovered 1 fake `json` tool call and retried 4 rejected ones.
+- The trip finished $156 over budget, mostly because the itinerary agent estimated $80/day for local transport.
+- That run exposed two bugs that are now fixed and covered by regression tests. Round 1's missing flights produced a flight cap of $0. A plan with no flights could also look under budget.
+
+The itinerary covered all 5 days with 3–4 activities each. All flight prices were search *estimates*, since no Amadeus key was set.
+
 ## Tests
 
 ```bash
 pytest
 ```
 
-The tests cover the budget math, the flow router (under budget, over budget then converging, hitting the max-rounds cap, ignoring results that cost more, flagging an agent total mismatch), tools with mocked `httpx` (parsing, caching, error payloads, Amadeus → estimate fallback) and the API endpoints. No API keys or LLM calls are needed.
+The 40 tests cover the budget math, the flow router (under budget, over budget then converging, hitting the max-rounds cap, ignoring results that cost more, surviving a failed replan, flagging an agent total mismatch), the guardrails, tools with mocked `httpx` (parsing, caching, error payloads, Amadeus → estimate fallback), the Groq wrapper (recovering pseudo tool calls, retries, the daily-quota fallback chain), the API endpoints, and the Streamlit UI rendered headlessly with `AppTest`. No API keys or LLM calls are needed.
 
 ## Known limits
 - **Flight data**: free flight APIs are limited. Amadeus Self-Service uses a test environment with cached, partial inventory, and Amadeus has announced it is retiring the self-service portal, so check its current status. Without working Amadeus credentials, flights fall back to *estimates* from search results. Every flight carries a `source` field, and the UI shows whether a price is a live quote or an estimate.

@@ -20,7 +20,7 @@ from ..tools import CurrencyTool, FlightSearchTool, RoutingTool, WebSearchTool, 
 # manager iteration re-sends the whole conversation, so the manager's cap
 # matters most.
 AGENT_MAX_ITER = 5
-MANAGER_MAX_ITER = 4
+MANAGER_MAX_ITER = 6
 
 
 def _manager() -> Agent:
