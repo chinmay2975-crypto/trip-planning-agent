@@ -6,9 +6,11 @@ Run the API first (``uvicorn trip_planner.api:app``), then
 
 from __future__ import annotations
 
+import json
 import os
 import time
 from datetime import date, timedelta
+from pathlib import Path
 
 import httpx
 import pandas as pd
@@ -17,6 +19,9 @@ import streamlit as st
 API_URL = os.getenv("API_URL", "http://localhost:8000")
 POLL_SECONDS = 3
 TIMEOUT_SECONDS = 15 * 60
+# A real result saved from a live run, so the UI can be explored without
+# spending LLM quota (a full hierarchical run uses most of a day's free tier).
+SAMPLE_PLAN = Path(__file__).with_name("sample_plan.json")
 
 st.set_page_config(page_title="Trip Planner", page_icon="✈️", layout="wide")
 st.title("✈️ Trip Planning Agent")
@@ -36,6 +41,10 @@ with st.sidebar.form("trip"):
         ["food", "history"],
     )
     submitted = st.form_submit_button("Plan my trip", type="primary")
+
+if SAMPLE_PLAN.exists() and st.sidebar.button("Load sample result", help="Saved live run, no API call"):
+    st.session_state["plan"] = json.loads(SAMPLE_PLAN.read_text(encoding="utf-8"))
+    st.session_state["is_sample"] = True
 
 
 def run_plan(payload: dict) -> dict:
@@ -68,13 +77,19 @@ if submitted:
         }
         try:
             st.session_state["plan"] = run_plan(payload)
+            st.session_state["is_sample"] = False
         except (httpx.HTTPError, RuntimeError) as e:
             st.error(f"Could not plan trip: {e}")
 
 plan = st.session_state.get("plan")
 if not plan:
-    st.info("Fill in the trip details in the sidebar and press **Plan my trip**.")
+    st.info("Fill in the trip details in the sidebar and press **Plan my trip**, "
+            "or press **Load sample result** to see a saved run instantly.")
     st.stop()
+if st.session_state.get("is_sample"):
+    req = plan["request"]
+    st.caption(f"Sample result from a saved live run: {req['origin']} → {req['destination']}, "
+               f"{req['start_date']} to {req['end_date']}, budget {req['budget']:,.0f} {req['currency']}.")
 
 b, cur = plan["budget"], plan["budget"]["currency"]
 c1, c2, c3, c4 = st.columns(4)

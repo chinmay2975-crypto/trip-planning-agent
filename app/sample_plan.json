@@ -1,0 +1,412 @@
+{
+  "request": {
+    "origin": "Mumbai",
+    "destination": "Lisbon",
+    "start_date": "2026-11-15",
+    "end_date": "2026-11-19",
+    "travelers": 1,
+    "budget": 800.0,
+    "currency": "USD",
+    "preferences": [
+      "food",
+      "history"
+    ]
+  },
+  "destination": {
+    "summary": "Lisbon in mid\u2011November 2026 offers a pleasant blend of mild autumn weather, rich history, and vibrant culinary scenes. The city\u2019s iconic neighborhoods\u2014Alfama\u2019s winding alleys, the lively streets of Bairro Alto, the elegant boulevards of Chiado, the bustling Baixa, and the historic Bel\u00e9m district\u2014provide ample opportunities to explore heritage sites and sample traditional Portuguese cuisine.",
+    "best_time_to_visit": "Late September to early November is ideal for Lisbon: temperatures are comfortably warm, crowds are thinner than in summer, and the city\u2019s cultural calendar is in full swing. Mid\u2011November, while slightly cooler and a bit wetter, still delivers enjoyable daytime conditions and a quieter atmosphere.",
+    "visa_requirements": "Indian passport holders from Mumbai must obtain a Schengen short\u2011stay visa (Type C) before traveling. Apply at the Consulate General of Portugal in Mumbai, at least 15 days prior to departure. Required documents include a passport valid for at least 6 months beyond the intended stay, travel insurance covering \u20ac30,000, a flight itinerary, proof of accommodation, proof of sufficient funds (\u2248\u20ac90 per day), and a completed visa application form. The visa is valid for a maximum stay of 90 days within a 180\u2011day period.",
+    "weather_summary": "Typical November weather in Lisbon: average high around 18\u202f\u00b0C (64\u202f\u00b0F) and average low near 12\u202f\u00b0C (54\u202f\u00b0F). Expect occasional rain showers (\u2248120\u202fmm for the month) and cooler evenings, so pack layers, a light waterproof jacket, and an umbrella.",
+    "local_events": [
+      "InShadow \u2013 a multidisciplinary screendance festival featuring dance, cinema, and visual art, running from 15\u202fNov\u202f2026 onward in various venues across the city.",
+      "Lisboa Games Week \u2013 Portugal\u2019s premier gaming event, scheduled 19\u201322\u202fNov\u202f2026, showcasing indie and mainstream titles, panels, and competitions.",
+      "Lisbon Film Festival (LEFFEST) \u2013 concluding on 15\u202fNov\u202f2026, offering film screenings, discussions, and industry networking across eight iconic venues.",
+      "Local food markets and street\u2011food festivals continue throughout November, highlighting seasonal produce and traditional dishes such as bacalhau, past\u00e9is de nata, and bifanas."
+    ],
+    "neighborhoods": [
+      "Alfama",
+      "Bairro Alto",
+      "Chiado",
+      "Baixa",
+      "Bel\u00e9m"
+    ],
+    "tips": [
+      "Use the Lisboa Card for unlimited public transport (metro, buses, trams) and discounts on attractions.",
+      "Pickpocket vigilance is essential in crowded areas; keep valuables in a front pocket or money belt.",
+      "Learn basic Portuguese phrases (e.g., \u201cBom dia\u201d, \u201cObrigado\u201d, \u201cQuanto custa?\u201d) to ease interactions.",
+      "The euro (\u20ac) is the currency; most places accept credit cards, but carry some cash for small vendors.",
+      "Bring a compact umbrella or raincoat for frequent November showers.",
+      "Check the latest travel advisories and have travel insurance covering health and trip cancellations.",
+      "Avoid tourist scams by confirming prices before purchasing at markets or street stalls.",
+      "Use reputable taxi apps (Uber, Bolt) or licensed taxis with meters for safe rides.",
+      "Plan early for the LEFFEST festival; tickets can sell out quickly.",
+      "Explore historic sites on foot to fully appreciate Lisbon\u2019s architecture and street life."
+    ]
+  },
+  "flights": [
+    {
+      "airline": "Scandinavian Airlines",
+      "route": "BOM-LIS-BOM",
+      "outbound": "2026-11-15",
+      "inbound": "2026-11-19",
+      "stops": 1,
+      "price_per_person": 287.0,
+      "currency": "USD",
+      "source": "estimate: https://us.trip.com/flights/mumbai-to-lisbon/airfares-bom-lis"
+    },
+    {
+      "airline": "Etihad Airways",
+      "route": "BOM-LIS-BOM",
+      "outbound": "2026-11-15",
+      "inbound": "2026-11-19",
+      "stops": 1,
+      "price_per_person": 612.76,
+      "currency": "USD",
+      "source": "estimate: https://www.etihad.com/en/flights/flights-from-mumbai-to-lisbon"
+    },
+    {
+      "airline": "Air India",
+      "route": "BOM-LIS-BOM",
+      "outbound": "2026-11-15",
+      "inbound": "2026-11-19",
+      "stops": 1,
+      "price_per_person": 612.76,
+      "currency": "USD",
+      "source": "estimate: https://www.momondo.in/flights/mumbai/lisbon"
+    }
+  ],
+  "stays": [
+    {
+      "name": "Lisboa Central Hostel",
+      "neighborhood": "Baixa",
+      "price_per_night": 13.68,
+      "rating": 9.4,
+      "url": "https://www.hostelworld.com/hostel/Lisboa-Central-Hostel/Lisbon/",
+      "notes": "Central location, close to historic sites and public transport."
+    },
+    {
+      "name": "Yeah Lisboa Hostel",
+      "neighborhood": "Baixa",
+      "price_per_night": 16.88,
+      "rating": 9.7,
+      "url": "https://www.hostelworld.com/hostel/Yeah-Lisboa-Hostel/Lisbon/",
+      "notes": "Excellent reviews, private rooms, near food markets and historic streets."
+    },
+    {
+      "name": "Goodmorning Solo Traveller Hostel",
+      "neighborhood": "Alfama",
+      "price_per_night": 20.0,
+      "rating": 8.9,
+      "url": "https://www.hostelworld.com/hostel/Goodmorning-Solo-Traveller-Hostel/Lisbon/",
+      "notes": "Quiet, historic Alfama neighborhood, great for food and history lovers."
+    },
+    {
+      "name": "Lisbon Check\u2011In Guesthouse",
+      "neighborhood": "Time Out Market area",
+      "price_per_night": 30.0,
+      "rating": 8.5,
+      "url": "https://www.lisbonboutiquehotels.net/lisbon-check-in-guesthouse",
+      "notes": "Modern guesthouse with private rooms, close to food stalls and historic sites."
+    },
+    {
+      "name": "Nesha Guesthouse",
+      "neighborhood": "Alvalade",
+      "price_per_night": 45.0,
+      "rating": 8.0,
+      "url": "https://www.hotelscombined.ca/Hotel/Nesha_Guesthouse_Lisbon.htm",
+      "notes": "Comfortable guesthouse, well\u2011connected by metro, near historic neighborhoods."
+    }
+  ],
+  "chosen_flight": {
+    "airline": "Scandinavian Airlines",
+    "route": "BOM-LIS-BOM",
+    "outbound": "2026-11-15",
+    "inbound": "2026-11-19",
+    "stops": 1,
+    "price_per_person": 287.0,
+    "currency": "USD",
+    "source": "estimate: https://us.trip.com/flights/mumbai-to-lisbon/airfares-bom-lis"
+  },
+  "chosen_stay": {
+    "name": "Lisboa Central Hostel",
+    "neighborhood": "Baixa",
+    "price_per_night": 13.68,
+    "rating": 9.4,
+    "url": "https://www.hostelworld.com/hostel/Lisboa-Central-Hostel/Lisbon/",
+    "notes": "Central location, close to historic sites and public transport."
+  },
+  "itinerary": {
+    "days": [
+      {
+        "day": 1,
+        "date": "2026-11-15",
+        "theme": "Alfama & Castle",
+        "activities": [
+          {
+            "time": "09:00",
+            "name": "Alfama Walking Tour",
+            "location": "Alfama, Lisbon",
+            "cost_per_person": 0.0,
+            "travel_minutes_from_previous": null,
+            "notes": ""
+          },
+          {
+            "time": "10:30",
+            "name": "S\u00e3o Jorge Castle",
+            "location": "S\u00e3o Jorge Castle, Lisbon",
+            "cost_per_person": 10.0,
+            "travel_minutes_from_previous": 15.0,
+            "notes": "Historic fortress with panoramic city views."
+          },
+          {
+            "time": "12:30",
+            "name": "Lisbon Cathedral (S\u00e9)",
+            "location": "Lisbon Cathedral, Lisbon",
+            "cost_per_person": 0.0,
+            "travel_minutes_from_previous": 10.0,
+            "notes": "Portugal's oldest cathedral."
+          },
+          {
+            "time": "14:00",
+            "name": "Miradouro de Santa Luzia",
+            "location": "Miradouro de Santa Luzia, Lisbon",
+            "cost_per_person": 0.0,
+            "travel_minutes_from_previous": 5.0,
+            "notes": "Scenic viewpoint over Alfama."
+          }
+        ]
+      },
+      {
+        "day": 2,
+        "date": "2026-11-16",
+        "theme": "Baixa & Chiado",
+        "activities": [
+          {
+            "time": "09:00",
+            "name": "Pra\u00e7a do Com\u00e9rcio",
+            "location": "Pra\u00e7a do Com\u00e9rcio, Lisbon",
+            "cost_per_person": 0.0,
+            "travel_minutes_from_previous": null,
+            "notes": ""
+          },
+          {
+            "time": "10:00",
+            "name": "Elevador de Santa Justa",
+            "location": "Elevador de Santa Justa, Lisbon",
+            "cost_per_person": 5.0,
+            "travel_minutes_from_previous": 5.0,
+            "notes": "Elevator with city vistas."
+          },
+          {
+            "time": "11:30",
+            "name": "Carmo Convent Ruins",
+            "location": "Convento do Carmo, Lisbon",
+            "cost_per_person": 0.0,
+            "travel_minutes_from_previous": 4.0,
+            "notes": "Gothic ruins from the 1755 earthquake."
+          },
+          {
+            "time": "13:00",
+            "name": "Chiado Museum (Museu Nacional de Arte Contempor\u00e2nea)",
+            "location": "Chiado, Lisbon",
+            "cost_per_person": 8.0,
+            "travel_minutes_from_previous": 6.0,
+            "notes": "Modern art collection."
+          }
+        ]
+      },
+      {
+        "day": 3,
+        "date": "2026-11-17",
+        "theme": "Bel\u00e9m District",
+        "activities": [
+          {
+            "time": "09:00",
+            "name": "Bel\u00e9m Tower",
+            "location": "Bel\u00e9m Tower, Lisbon",
+            "cost_per_person": 6.0,
+            "travel_minutes_from_previous": null,
+            "notes": "Iconic fortified tower on the Tagus."
+          },
+          {
+            "time": "10:30",
+            "name": "Jer\u00f3nimos Monastery",
+            "location": "Jer\u00f3nimos Monastery, Bel\u00e9m, Lisbon",
+            "cost_per_person": 10.0,
+            "travel_minutes_from_previous": 5.0,
+            "notes": "Manueline masterpiece, UNESCO site."
+          },
+          {
+            "time": "12:00",
+            "name": "Past\u00e9is de Bel\u00e9m (tasting)",
+            "location": "Past\u00e9is de Bel\u00e9m, Bel\u00e9m, Lisbon",
+            "cost_per_person": 5.0,
+            "travel_minutes_from_previous": 5.0,
+            "notes": "Try the famous custard tarts."
+          },
+          {
+            "time": "13:30",
+            "name": "MAAT \u2013 Museum of Art, Architecture and Technology",
+            "location": "MAAT, Bel\u00e9m, Lisbon",
+            "cost_per_person": 9.0,
+            "travel_minutes_from_previous": 10.0,
+            "notes": "Contemporary museum on the riverfront."
+          }
+        ]
+      },
+      {
+        "day": 4,
+        "date": "2026-11-18",
+        "theme": "Alfama Culture & Fado",
+        "activities": [
+          {
+            "time": "09:00",
+            "name": "Museu do Fado",
+            "location": "Museu do Fado, Alfama, Lisbon",
+            "cost_per_person": 5.0,
+            "travel_minutes_from_previous": null,
+            "notes": "Explore the history of Portugal's music."
+          },
+          {
+            "time": "10:30",
+            "name": "National Tile Museum (Museu Nacional do Azulejo)",
+            "location": "Museu Nacional do Azulejo, Alfama, Lisbon",
+            "cost_per_person": 6.0,
+            "travel_minutes_from_previous": 20.0,
+            "notes": "Showcases decorative tiles."
+          },
+          {
+            "time": "12:30",
+            "name": "Feira da Ladra Flea Market",
+            "location": "Feira da Ladra, Alfama, Lisbon",
+            "cost_per_person": 0.0,
+            "travel_minutes_from_previous": 10.0,
+            "notes": "Browse antiques and local crafts."
+          },
+          {
+            "time": "19:00",
+            "name": "InShadow Festival Evening Show",
+            "location": "Various venues, Alfama, Lisbon",
+            "cost_per_person": 0.0,
+            "travel_minutes_from_previous": 15.0,
+            "notes": "Multidisciplinary screendance performance."
+          }
+        ]
+      },
+      {
+        "day": 5,
+        "date": "2026-11-19",
+        "theme": "Bairro Alto & Modern Lisbon",
+        "activities": [
+          {
+            "time": "09:00",
+            "name": "Miradouro de S\u00e3o Pedro de Alc\u00e2ntara",
+            "location": "Bairro Alto, Lisbon",
+            "cost_per_person": 0.0,
+            "travel_minutes_from_previous": null,
+            "notes": "Panoramic view over the city."
+          },
+          {
+            "time": "10:30",
+            "name": "LX Factory Creative Hub",
+            "location": "LX Factory, Alc\u00e2ntara, Lisbon",
+            "cost_per_person": 0.0,
+            "travel_minutes_from_previous": 15.0,
+            "notes": "Trendy space with shops and street art."
+          },
+          {
+            "time": "12:30",
+            "name": "Lisbon City Hall (Pa\u00e7os do Concelho)",
+            "location": "Lisbon City Hall, Rossio, Lisbon",
+            "cost_per_person": 0.0,
+            "travel_minutes_from_previous": 12.0,
+            "notes": "Historic building with guided interior tour."
+          }
+        ]
+      }
+    ],
+    "food_per_person_per_day": 30.0,
+    "local_transport_per_day": 80.0
+  },
+  "budget": {
+    "currency": "USD",
+    "budget": 800.0,
+    "flights": 287.0,
+    "accommodation": 54.72,
+    "activities": 64.0,
+    "food": 150.0,
+    "local_transport": 400.0,
+    "total": 955.72,
+    "over_budget": true,
+    "overage": 155.72,
+    "suggested_trims": [
+      "Switch to Hotel Lapa (price $55/night) to reduce accommodation cost by $45.",
+      "Drop Jer\u00f3nimos Monastery (cost $10) from Day 3 activities.",
+      "Reduce daily food budget to $25, saving $5 per day ($25 total).",
+      "Reduce local transport cost to $70 per day, saving $50 total."
+    ]
+  },
+  "iterations": 3,
+  "budget_history": [
+    {
+      "currency": "USD",
+      "budget": 800.0,
+      "flights": 0.0,
+      "accommodation": 200.0,
+      "activities": 64.0,
+      "food": 150.0,
+      "local_transport": 400.0,
+      "total": 814.0,
+      "over_budget": true,
+      "overage": 14.0,
+      "suggested_trims": [
+        "Switch to Hotel Lapa (price $55/night) to reduce accommodation cost by $45.",
+        "Drop Jer\u00f3nimos Monastery (cost $10) from Day 3 activities.",
+        "Reduce daily food budget to $25, saving $5 per day ($25 total).",
+        "Reduce local transport cost to $70 per day, saving $50 total."
+      ]
+    },
+    {
+      "currency": "USD",
+      "budget": 800.0,
+      "flights": 529.02,
+      "accommodation": 54.72,
+      "activities": 64.0,
+      "food": 150.0,
+      "local_transport": 400.0,
+      "total": 1197.74,
+      "over_budget": true,
+      "overage": 397.74,
+      "suggested_trims": [
+        "Switch to Hotel Lapa (price $55/night) to reduce accommodation cost by $45.",
+        "Drop Jer\u00f3nimos Monastery (cost $10) from Day 3 activities.",
+        "Reduce daily food budget to $25, saving $5 per day ($25 total).",
+        "Reduce local transport cost to $70 per day, saving $50 total."
+      ]
+    },
+    {
+      "currency": "USD",
+      "budget": 800.0,
+      "flights": 287.0,
+      "accommodation": 54.72,
+      "activities": 64.0,
+      "food": 150.0,
+      "local_transport": 400.0,
+      "total": 955.72,
+      "over_budget": true,
+      "overage": 155.72,
+      "suggested_trims": [
+        "Switch to Hotel Lapa (price $55/night) to reduce accommodation cost by $45.",
+        "Drop Jer\u00f3nimos Monastery (cost $10) from Day 3 activities.",
+        "Reduce daily food budget to $25, saving $5 per day ($25 total).",
+        "Reduce local transport cost to $70 per day, saving $50 total."
+      ]
+    }
+  ],
+  "warnings": [
+    "No usable flights output from the crew",
+    "Itinerary was planned around Alfama; the cheaper stay is in Baixa, so check travel times from there",
+    "Still 155.72 USD over budget after 3 planning rounds"
+  ],
+  "llm_tokens": 212258
+}

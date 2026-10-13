@@ -76,6 +76,8 @@ uvicorn trip_planner.api:app --reload      # http://localhost:8000/docs
 streamlit run app/streamlit_app.py
 ```
 
+In the UI, **Load sample result** shows a saved live run ([app/sample_plan.json](app/sample_plan.json)) straight away, without calling the API or spending LLM quota.
+
 ### API
 - `POST /plan`: blocking call. Takes a `TripRequest` and returns a `TripPlan`.
 - `POST /plan/async` then `GET /plan/{job_id}`: an async job that the UI polls. Jobs are held in memory.

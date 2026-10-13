@@ -49,3 +49,11 @@ def test_app_renders_every_tab_for_a_plan():
     assert metrics["Planning rounds"] == "2"
     assert len(at.expander) == 5  # one per itinerary day
     assert any("planned around Chiado" in w.value for w in at.warning)
+
+
+def test_sample_button_loads_saved_plan():
+    at = AppTest.from_file(str(APP), default_timeout=60).run()
+    next(b for b in at.button if b.label == "Load sample result").click().run()
+    assert not at.exception
+    assert [t.label for t in at.tabs] == ["Overview", "Flights", "Stay", "Itinerary", "Budget"]
+    assert any("Sample result" in c.value for c in at.caption)
