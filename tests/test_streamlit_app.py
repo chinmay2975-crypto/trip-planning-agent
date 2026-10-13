@@ -57,3 +57,11 @@ def test_sample_button_loads_saved_plan():
     assert not at.exception
     assert [t.label for t in at.tabs] == ["Overview", "Flights", "Stay", "Itinerary", "Budget"]
     assert any("Sample result" in c.value for c in at.caption)
+
+
+def test_budget_has_no_upper_limit():
+    at = AppTest.from_file(str(APP), default_timeout=60).run()
+    budget = next(n for n in at.number_input if n.label == "Total budget")
+    assert budget.max is None
+    budget.set_value(5_000_000).run()
+    assert not at.exception and budget.value == 5_000_000

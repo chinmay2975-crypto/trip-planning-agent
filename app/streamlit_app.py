@@ -33,7 +33,7 @@ with st.sidebar.form("trip"):
     start = st.date_input("Start date", date.today() + timedelta(days=30))
     end = st.date_input("End date", date.today() + timedelta(days=35))
     travelers = st.number_input("Travellers", 1, 10, 1)
-    budget = st.number_input("Total budget", 100.0, 100000.0, 1500.0, step=100.0)
+    budget = st.number_input("Total budget", min_value=1.0, max_value=None, value=1500.0, step=100.0)
     currency = st.selectbox("Currency", ["USD", "EUR", "INR", "GBP"])
     prefs = st.multiselect(
         "Preferences",
